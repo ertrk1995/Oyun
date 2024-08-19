@@ -1,0 +1,49 @@
+import random
+
+def tas_kagit_makas_Ertugrul_Erturk():
+    print("Taş, Kağıt, Makas oyununa hoş geldiniz!")
+    print("Oyunun kuralları: Taş makası yener, kağıt taşı yener, makas kağıdı yener.")
+    print("Oyundan çıkmak için 'q' tuşuna basabilirsiniz.")
+
+    secenekler = ["taş", "kağıt", "makas"]
+    oyuncu_galibiyetleri = 0
+    bilgisayar_galibiyetleri = 0
+
+    while True:
+        oyuncu_secimi = input("Seçiminizi yapın (taş, kağıt, makas): ")
+        if oyuncu_secimi == 'q':
+            print("Oyundan çıkılıyor...")
+            break
+        if oyuncu_secimi not in secenekler:
+            print("Geçersiz seçim, lütfen tekrar dene.")
+            continue
+
+        bilgisayar_secimi = random.choice(secenekler)
+        print(f"Bilgisayarın seçimi: {bilgisayar_secimi}")
+
+        if oyuncu_secimi == bilgisayar_secimi:
+            print("Berabere!")
+        elif (oyuncu_secimi == "taş" and bilgisayar_secimi == "makas") or \
+             (oyuncu_secimi == "kağıt" and bilgisayar_secimi == "taş") or \
+             (oyuncu_secimi == "makas" and bilgisayar_secimi == "kağıt"):
+            print("Kazandınız!")
+            oyuncu_galibiyetleri += 1
+        else:
+            print("Kaybettiniz!")
+            bilgisayar_galibiyetleri += 1
+
+        print(f"Skor: Oyuncu {oyuncu_galibiyetleri} - Bilgisayar {bilgisayar_galibiyetleri}")
+
+        if oyuncu_galibiyetleri == 2 or bilgisayar_galibiyetleri == 2:
+            if oyuncu_galibiyetleri == 2:
+                print("Tebrikler, oyunu kazandınız!")
+            else:
+                print("Bilgisayar oyunu kazandı!")
+            break
+
+        devam = input("Tekrar oynamak ister misiniz? (evet/hayır): ")
+        if devam != 'evet':
+            print("Oyundan çıkılıyor...")
+            break
+
+tas_kagit_makas_Ertugrul_Erturk()
